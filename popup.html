@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link href="style.css" rel="stylesheet" type="text/css" />
+<script src="jquery.min.js"></script>
+<script src="popup.js"></script>
+</head>
+
+<body>
+<div id="wraper">
+
+<form action="http://localhost/tool/index.php" method="post">
+
+<p id="btnBar">
+<!-- button的默认类型是"submit",so一定记得添加type为"button" -->
+<button type="button" id="saveTotxt">saveTotxt</button>
+<input type="submit" id="save" value="save">
+<span id="response"></span>
+</p>
+
+
+<input type="hidden" name="url" id="url" />
+<input type="text" name="filename" id="filename" />
+<textarea name="content" id="content"></textarea>
+
+</form>
+
+</div>
+</body>
+</html>

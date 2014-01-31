@@ -1,0 +1,19 @@
+#wraper{
+}
+#btnBar{
+	height:28px;
+	margin:0;
+}
+#saveTotxt{
+	margin-right:36px;
+}
+#filename{
+	width:800px;
+}
+#save{
+	display:none;
+}
+textarea{
+	width:840px;
+	height:520px;
+}

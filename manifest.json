@@ -9,6 +9,7 @@
   	"tabs",
   	"contextMenus",
   	"downloads",  
+  	"storage",
     "http://*/*"
   ],
   //"background": { "scripts": ["background.js"] },

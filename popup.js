@@ -27,7 +27,7 @@ $(function($){
 		//发消息给content scripts
 		chrome.tabs.getSelected(null, function(tab) {
 			  chrome.tabs.sendRequest(tab.id, {selector:selector}, function(response) {
-			    console.log(response);
+			    //console.log(response);
 			  });
 			});		
 		
@@ -58,44 +58,6 @@ $(function($){
 			    $save.show();
 			  }
 	);	
-	
-	/*
-	$save.click(function(){
-		var url = $url.val();
-		var filename = $filename.val();
-		var content = $content.val();
-		
-	    var src = 'http://localhost/tool/index.php' ;
-	    
-	    var data = {
-	    		url : encodeURIComponent(url),
-	    		filename : encodeURIComponent(filename),
-	    		content : encodeURIComponent(content)
-	    };
-	    
-	    //$.post(src, data, function(msg){//$('#response').html(msg);});
-	    	
-	    
-	    
-	    var xhr = new XMLHttpRequest;
-	    
-	    xhr.open("post", src, true);
-	    
-
-		xhr.onreadystatechange = function() {
-			if (xhr.readyState == 4) {
-				if (xhr.status >= 200 && xhr.status < 300 || xhr.status == 304) {
-					$('#response').html(xhr.responseText);
-				}
-			}
-		};
-	    	
-	    xhr.send(null);
-	});
-	 */
-	
-
-	
 	
 });
 

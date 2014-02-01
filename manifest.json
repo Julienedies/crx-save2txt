@@ -7,11 +7,18 @@
 
   "permissions": [
   	"tabs",
+  	"contextMenus",
   	"downloads",  
     "http://*/*"
   ],
+  //"background": { "scripts": ["background.js"] },
+         "icons": {
+          "16": "img/icon-bitty.png",
+          "48": "img/icon-small.png",
+          "128": "img/icon-large.png"
+        },
   "browser_action": {
-    "default_icon": "icon.png",
+    "default_icon": "img/icon-large.png",
     "default_popup": "popup.html"
   }
 }

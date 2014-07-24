@@ -14,11 +14,42 @@ chrome.tabs.executeScript(null, {file: "content_script.js"});
 //init
 $(function($){
 	
+	function downloadLink(name, content, mimetype) {
+		  var a = document.createElement('a');
+		  a.href = window.URL.createObjectURL(new Blob([content], {type: mimetype}));
+		  a.download = name;
+		  a.textContent = 'Download ready';
+
+		  document.body.appendChild(a);
+		}
+
+		
+	
+	
+	
+	
+	
 	var $select = $('#select');
 	var $url = $('#url');
 	var $filename = $('#filename');
 	var $content = $('#content');
 	var $save = $('#save');
+	
+	$save.click(function(){ return true;
+	    var url = $url.val(url);
+	    var filename = $filename.val(filename);
+	    var content = $content.text(content);
+	    var mimetype = 'text/plain';
+		//downloadLink(filename, content, 'text/plain');
+		  var a = document.createElement('a');
+		  a.href = window.URL.createObjectURL(new Blob([content], {type: mimetype}));
+		  a.download = filename;
+		  a.textContent = 'Download ready';	    
+	    
+		  $save.after(a);
+	    return false;
+	});	
+	
 	
 	
 	$('#saveTotxt').click(function(){
@@ -58,6 +89,11 @@ $(function($){
 			    $save.show();
 			  }
 	);	
+	
+	
+	
+	
+
 	
 });
 

@@ -32,7 +32,7 @@ chrome.extension.onRequest.addListener(
 		    var content;
 		    var selector = request.selector;
 		    var url = location.href;
-		    var filename = $('title').innerText.substr(0,24);
+		    var filename = $('title').innerText;
 		    
 		    selector = selector ? setSelector(selector) : domainSelector;
 		    content = $(selector) && $(selector).innerText;

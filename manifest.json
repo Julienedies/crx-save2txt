@@ -2,7 +2,7 @@
   "manifest_version": 2,
 
   "name": "saveToTxt",
-  "description": "This extension demonstrates a browser action with kittens.",
+  "description": "It save the HTML as TXT.",
   "version": "1.0",
 
   "permissions": [
@@ -10,6 +10,7 @@
   	"contextMenus",
   	"downloads",  
   	"storage",
+  	"\u003Call_urls\u003E",
     "http://*/*"
   ],
   //"background": { "scripts": ["background.js"] },

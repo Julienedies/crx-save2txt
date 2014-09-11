@@ -1,0 +1,14 @@
+_site/*
+_theme_packages/*
+_pim_
+~*.xlsx
+.idea/
+Thumbs.db
+.DS_Store
+
+!.gitkeep
+
+.rbenv-version
+.rvmrc
+
+.tmp_*~

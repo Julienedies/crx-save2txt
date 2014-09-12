@@ -7,13 +7,13 @@
 
 function fs() {
 
-    var _getFs = function (type, size) {
+    var requestFileSystem = function (type, size) {
 
         type = type || window.TEMPORARY;
 
         size = size || 5 * 1024 * 1024;
 
-        var fs = getFs.fs = getFs.fs || window.requestFileSystem || window.webkitRequestFileSystem;
+        var fs = requestFileSystem.fs = requestFileSystem.fs || window.requestFileSystem || window.webkitRequestFileSystem;
 
         return $.Deferred(function (deferred) {
 
@@ -27,46 +27,75 @@ function fs() {
     };
 
 
-    var writeFile = function (name) {
+    var getFileEntry = function (fs) {
 
-        name = name || (+new Date).toString(36);
+        return $.Deferred(function (def) {
 
-        return _getFs(type, size).done(function (fs) {
+            fs.root.getFile(name, {create: true, exclusive: true}, function (fileEntry) {
 
-
-            return fs.root.getFile(name, {create: true, exclusive: true}, function (fileEntry) {
-
-
-                fileEntry.createWriter(function (fileWriter) {
-
-                    fileWriter.onwriteend = function (e) {
-                        console.log('Write completed.');
-                    };
-
-                    fileWriter.onerror = function (e) {
-                        console.log('Write failed: ' + e.toString());
-                    };
-
-                });
-
+                def.resolve(fileEntry);
             }, function (err) {
-
+                def.reject(err);
             });
-
-
-        }).fail(function (err) {
-
 
         });
 
     };
 
 
+    var createWriter = function (fileEntry) {
 
+        return $.Deferred(function (def) {
 
-    return {
-        writeFile: writeFile
+            fileEntry.createWriter(function (fileWriter) {
+                def.resolve(fileWriter);
+            }, function (err) {
+                def.reject(err);
+            })
+
+        });
+
     };
+
+
+    var _writeFile = function (fileWriter) {
+
+        fileWriter.onwriteend = function (e) {
+            console.log('Write completed.');
+        };
+
+        fileWriter.onerror = function (e) {
+            console.log('Write failed: ' + e.toString());
+        };
+
+        var blob = new Blob([content], {type: type});
+
+        //fileWriter.write();
+
+        return fileEntry.toURL()
+
+        return URL.createObjectURL(blob);
+
+    };
+
+
+    var writeFile = function (name, content, type) {
+
+        name = name || (+new Date).toString(36);
+
+        content = content || name;
+
+        type = type || 'text/plain;charset=utf-8';
+
+
+    };
+
+
+
+
+return {
+    writeFile: writeFile
+};
 
 
 }

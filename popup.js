@@ -5,7 +5,7 @@
 
 
 //向当前html注入js
-window.chrome && chrome.tabs.executeScript(null, {file: "content_script.js"});
+window.chrome && chrome.tabs && chrome.tabs.executeScript(null, {file: "content_script.js"});
 
 $(function ($) {
 
@@ -31,9 +31,11 @@ $(function ($) {
 
     $('#save').click(function () {
 
-        var filename = $filename.val();
+        var filename = $filename.val() || (+new Date).toString(36);
 
         var content = $content.val().replace(/\n/g, '\r\n');
+
+        if(!content) return alert('内容为空');
 
         var a = document.createElement('a');
 

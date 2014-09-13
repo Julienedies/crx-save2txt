@@ -1,30 +1,32 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<link href="style.css" rel="stylesheet" type="text/css" />
-<script src="jquery.min.js"></script>
-<script src="popup.js"></script>
+    <meta charset="utf-8"/>
+    <link rel="stylesheet" type="text/css" href="style.css"/>
+
+    <script src="jquery.min.js"></script>
+    <script src="popup.js"></script>
 </head>
 
 <body>
 <div id="wraper">
 
-<form action="http://localhost/tool/index.php" method="post">
+    <form action="http://localhost/tool/index.php" method="post">
 
-<p id="btnBar">
-<input type="text" id="select" placeholder="自定义保存元素" title="jQyery选择符" alt="jQyery选择符" />
-<button type="button" id="saveTotxt">saveTotxt</button>
-<input type="submit" id="save" value="save">
-<span id="response"></span>
-</p>
+        <div id="btnBar">
+            <input type="text" id="selector" placeholder="使用css选择符，自定义保存元素"/>
+            <button type="button" id="selectText">选择文本</button>
+            <button type="button" id="save">下载</button>
+            <input type="submit" value="提交到服务器">
+            <span id="response"></span>
+        </div>
 
 
-<input type="hidden" name="url" id="url" />
-<input type="text" name="filename" placeholder="Txt名预览,可以编辑修改" id="filename" />
-<textarea name="content" placeholder="Txt内容预览,可以编辑修改" id="content"></textarea>
+        <input type="hidden" name="url" id="url"/>
+        <input type="text" name="filename" placeholder="Txt名预览,可以编辑修改" id="filename"/>
+        <textarea name="content" placeholder="Txt内容预览,可以编辑修改" id="content"></textarea>
 
-</form>
+    </form>
 
 </div>
 </body>

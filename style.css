@@ -4,16 +4,16 @@
 	height:28px;
 	margin:0;
 }
+#selector{
+    width:16em;
+}
 #saveTotxt{
 	margin-right:36px;
 }
 #filename{
-	width:800px;
-}
-#save{
-	display:none;
+	width:720px;
 }
 textarea{
-	width:840px;
+	width:720px;
 	height:520px;
 }

@@ -1,26 +1,23 @@
 {
   "manifest_version": 2,
-
   "name": "saveToTxt",
   "description": "It save the HTML as TXT.",
   "version": "1.0",
-
-  "permissions": [
-  	"tabs",
-  	"contextMenus",
-  	"downloads",  
-  	"storage",
-  	"\u003Call_urls\u003E",
-    "http://*/*"
-  ],
-  //"background": { "scripts": ["background.js"] },
-         "icons": {
-          "16": "img/icon-bitty.png",
-          "48": "img/icon-small.png",
-          "128": "img/icon-large.png"
-        },
+  "icons": {
+    "16": "img/icon-bitty.png",
+    "48": "img/icon-small.png",
+    "128": "img/icon-large.png"
+  },
   "browser_action": {
     "default_icon": "img/icon-large.png",
     "default_popup": "popup.html"
-  }
+  },
+  "permissions": [
+    "tabs",
+    "downloads",
+    "storage",
+    "\u003Call_urls\u003E",
+    "http://*/*",
+    "https://*/*"
+  ]
 }

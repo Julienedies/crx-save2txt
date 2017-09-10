@@ -1,5 +1,8 @@
 /**
- *
+ *  扩展popup页面运行后，向当前标签页面注入content_script.js
+ *  content_script.js检查之前是否有使用过的文本选择符，
+ *  如果有则根据选择符选择文本传回给popup页面。
+ *  如果没有旧选择符，则等待popup页面传入文本选择符，存储该选择符，并依据选择符选择文本传回给popup页面。
  *
  */
 
@@ -14,7 +17,6 @@ $(function ($) {
     var $filename = $('#filename');
     var $content = $('#content');
 
-
     $('#selectText').click(function () {
 
         var selector = $selector.val();
@@ -26,7 +28,7 @@ $(function ($) {
             });
         });
 
-    });
+    }).click();
 
 
     $('#save').click(function () {
@@ -76,7 +78,6 @@ $(function ($) {
 
         }
     );
-
 
 });
 

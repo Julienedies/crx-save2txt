@@ -8,7 +8,7 @@
 
 
 //向当前html注入js
-window.chrome && chrome.tabs && chrome.tabs.executeScript(null, {file: "content_script.js"});
+window.chrome && chrome.tabs && chrome.tabs.executeScript(null, {file: "js/content_script.js"});
 
 $(function ($) {
 
@@ -17,6 +17,7 @@ $(function ($) {
     var $filename = $('#filename');
     var $content = $('#content');
 
+    //
     $('#selectText').click(function () {
 
         var selector = $selector.val();
@@ -30,14 +31,14 @@ $(function ($) {
 
     }).click();
 
-
+    //
     $('#save').click(function () {
 
         var filename = $filename.val() || (+new Date).toString(36);
 
         var content = $content.val().replace(/\n/g, '\r\n');
 
-        if(!content) return alert('内容为空');
+        if (!content) return alert('内容为空');
 
         var a = document.createElement('a');
 
@@ -58,7 +59,7 @@ $(function ($) {
         function (request, sender, sendResponse) {
 
             console.log(sender.tab ?
-                "from a content script:" + sender.tab.url :
+            "from a content script:" + sender.tab.url :
                 "from the extension");
 
             if (request.greeting == "hello") {

@@ -40,17 +40,30 @@ $(function ($) {
 
         if (!content) return alert('内容为空');
 
-        var a = document.createElement('a');
+        try{
+            var a = document.createElement('a');
 
-        a.href = window.URL.createObjectURL(new Blob([content], {type: 'text/plain;charset=utf-8'}));
+            a.href = window.URL.createObjectURL(new Blob([content], {type: 'text/plain;charset=utf-8'}));
 
-        a.download = filename + '.txt';
+            a.download = filename + '.txt';
 
-        a.textContent = '---';
+            a.textContent = '---';
 
-        $(this).after(a);
+            $(this).after(a);
 
-        a.click();
+            a.click();
+
+            var options = {
+                filename: a.download,
+                url: a.href
+            };
+            chrome.downloads.download(options, function() {
+                console.log('Text saved.');
+            });
+
+        }catch(e){
+            console.error(e);
+        }
 
     });
 

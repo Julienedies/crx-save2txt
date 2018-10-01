@@ -51,7 +51,7 @@ $(function ($) {
 
             $(this).after(a);
 
-            a.click();
+            //a.click(); //html5下载
 
             var options = {
                 filename: a.download,

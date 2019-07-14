@@ -16,7 +16,7 @@ chrome.storage.sync.get(domain, function (date) {
 });
 
 function $(selector) {
-    return selector ? document.querySelector(selector) : document.querySelector('body');
+    return selector ? document.querySelectorAll(selector) : document.querySelectorAll('body');
 }
 
 function setSelector(selector) {
@@ -42,13 +42,18 @@ chrome.extension.onRequest.addListener(
             "from the extension");
 
         var dobj;
-        var content;
+        var content = '';
         var selector = request.selector;
         var url = location.href;
-        var filename = $('title').innerText;
+        var filename = $('title')[0].innerText;
 
         selector = selector ? setSelector(selector) : domainSelector;
-        content = $(selector) && $(selector).innerText;
+        var domArr = $(selector);
+        if(domArr){
+            [].forEach.call(domArr, function(domItem, index) {
+                content += domItem.innerText + '\r\n';
+            })
+        }
 
         dobj = {url: url, filename: filename, content: content};
 

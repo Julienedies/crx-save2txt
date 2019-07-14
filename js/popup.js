@@ -68,7 +68,7 @@ $(function ($) {
 
         var filename = $filename.val() || (+new Date).toString(36);
 
-        var content = $url.val() + '\r\n' + $content.val().replace(/\n/g, '\r\n');
+        var content = $content.val().replace(/\n/g, '\r\n') + '\r\n' + $url.val();
 
         if (!content) return alert('内容为空');
 

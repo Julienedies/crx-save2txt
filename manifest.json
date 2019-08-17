@@ -14,7 +14,7 @@
   },
   "permissions": [
     "tabs",
-    "<all_urls>",
+    "activeTab",
     "downloads",
     "storage",
     "\u003Call_urls\u003E",

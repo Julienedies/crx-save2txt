@@ -1,14 +1,20 @@
-_site/*
-_theme_packages/*
-_pim_
-~*.xlsx
-.idea/
+#系统创建文件
 Thumbs.db
 .DS_Store
 
-!.gitkeep
+#IDE创建
+.idea/
+.settings/
+.project
 
+#临时文件
+!.gitkeep
 .rbenv-version
 .rvmrc
-
 .tmp_*~
+*.log
+
+
+#外部类库
+bower_components/
+node_modules/

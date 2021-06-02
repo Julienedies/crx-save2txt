@@ -9,7 +9,7 @@
 var data = {};
 
 //向当前html注入js
-window.chrome && chrome.tabs && chrome.tabs.executeScript(null, {file: "js/content_script.js"});
+window.chrome && chrome.tabs && chrome.tabs.executeScript(null, {file: "src/js/content_script.js"});
 
 // 接收content script发过来的消息
 chrome.extension.onRequest.addListener(
@@ -29,12 +29,18 @@ chrome.extension.onRequest.addListener(
         var url = request.url;
         var filename = request.filename;
         var content = request.content;
+        var domainSelector = request.domainSelector;
 
         data = {title: filename, text: content, url:url};
 
         $('#url').val(url);
         $('#filename').val(filename);
         $('#content').text(content);
+
+        var $selector = $('#selector');
+        if(!$selector.val() && domainSelector){
+            $selector.val(domainSelector);
+        }
 
     }
 );

@@ -15,11 +15,11 @@ chrome.storage.sync.get(domain, function (date) {
     console.log(JSON.stringify(date));
 });
 
-function $(selector) {
+function $ (selector) {
     return selector ? document.querySelectorAll(selector) : document.querySelectorAll('body');
 }
 
-function setSelector(selector) {
+function setSelector (selector) {
     var dobj = {};
 
     if (selector) {
@@ -38,7 +38,7 @@ chrome.extension.onRequest.addListener(
     function (request, sender, sendResponse) {
 
         console.log(sender.tab ?
-        "from a content script:" + sender.tab.url :
+            "from a content script:" + sender.tab.url :
             "from the extension");
 
         var dobj;
@@ -49,13 +49,13 @@ chrome.extension.onRequest.addListener(
 
         selector = selector ? setSelector(selector) : domainSelector;
         var domArr = $(selector);
-        if(domArr){
-            [].forEach.call(domArr, function(domItem, index) {
+        if (domArr) {
+            [].forEach.call(domArr, function (domItem, index) {
                 content += domItem.innerText + '\r\n';
             })
         }
 
-        dobj = {url: url, filename: filename, content: content};
+        dobj = {url: url, filename: filename, content: content, domainSelector: domainSelector};
 
         //sendResponse && sendResponse(dobj);
 

@@ -6,7 +6,7 @@
  *
  */
 
-var data = {};
+let data = {};
 
 //向当前html注入js
 window.chrome && chrome.tabs && chrome.tabs.executeScript(null, {file: "src/js/content_script.js"});
@@ -26,10 +26,10 @@ chrome.extension.onRequest.addListener(
             sendResponse({});
         }
 
-        var url = request.url;
-        var filename = request.filename;
-        var content = request.content;
-        var domainSelector = request.domainSelector;
+        let url = request.url;
+        let filename = request.filename;
+        let content = request.content;
+        let domainSelector = request.domainSelector;
 
         data = {title: filename, text: content, url:url};
 
@@ -37,7 +37,7 @@ chrome.extension.onRequest.addListener(
         $('#filename').val(filename);
         $('#content').text(content);
 
-        var $selector = $('#selector');
+        let $selector = $('#selector');
         if(!$selector.val() && domainSelector){
             $selector.val(domainSelector);
         }
@@ -50,15 +50,15 @@ chrome.extension.onRequest.addListener(
 
 $(function ($) {
 
-    var $selector = $('#selector');
-    var $url = $('#url');
-    var $filename = $('#filename');
-    var $content = $('#content');
+    let $selector = $('#selector');
+    let $url = $('#url');
+    let $filename = $('#filename');
+    let $content = $('#content');
 
     //
     $('#selectText').click(function () {
 
-        var selector = $selector.val();
+        let selector = $selector.val();
 
         //发消息给content scripts
         chrome.tabs.getSelected(null, function (tab) {
@@ -72,14 +72,14 @@ $(function ($) {
     //
     $('#save').click(function () {
 
-        var filename = $filename.val() || (+new Date).toString(36);
+        let filename = $filename.val() || (+new Date).toString(36);
 
-        var content = $content.val().replace(/\n/g, '\r\n') + '\r\n' + $url.val();
+        let content = $content.val().replace(/\n/g, '\r\n') + '\r\n' + $url.val();
 
         if (!content) return alert('内容为空');
 
         try{
-            var a = document.createElement('a');
+            let a = document.createElement('a');
 
             a.href = window.URL.createObjectURL(new Blob([content], {type: 'text/plain;charset=utf-8'}));
 
@@ -91,7 +91,7 @@ $(function ($) {
 
             //a.click(); //html5下载
 
-            var options = {
+            let options = {
                 filename: a.download,
                 url: a.href
             };

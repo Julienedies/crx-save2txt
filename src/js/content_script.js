@@ -6,9 +6,9 @@
  */
 //chrome.downloads.download({url:location.href,filename:'test.txt'}, function(){});
 
-var domain = location.hostname;
+let domain = location.hostname;
 
-var domainSelector = '';
+let domainSelector = '';
 
 chrome.storage.sync.get(domain, function (date) {
     domainSelector = date[domain];
@@ -20,7 +20,7 @@ function $ (selector) {
 }
 
 function setSelector (selector) {
-    var dobj = {};
+    let dobj = {};
 
     if (selector) {
         dobj[domain] = selector;
@@ -41,14 +41,14 @@ chrome.extension.onRequest.addListener(
             "from a content script:" + sender.tab.url :
             "from the extension");
 
-        var dobj;
-        var content = '';
-        var selector = request.selector;
-        var url = location.href;
-        var filename = $('title')[0].innerText;
+        let dobj;
+        let content = '';
+        let selector = request.selector;
+        let url = location.href;
+        let filename = $('title')[0].innerText;
 
         selector = selector ? setSelector(selector) : domainSelector;
-        var domArr = $(selector);
+        let domArr = $(selector);
         if (domArr) {
             [].forEach.call(domArr, function (domItem, index) {
                 content += domItem.innerText + '\r\n';

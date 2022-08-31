@@ -29,23 +29,23 @@ chrome.extension.onRequest.addListener(
         let url = request.url;
         let filename = request.filename;
         let content = request.content;
-        let domainSelector = request.domainSelector;
+        let selector = request.selector;
+        let isUseHref = request.isUseHref;
 
         data = {title: filename, text: content, url:url};
 
         $('#url').val(url);
         $('#filename').val(filename);
         $('#content').text(content);
+        $('#isUseHref').prop('checked', Boolean(isUseHref*1));
 
         let $selector = $('#selector');
-        if(!$selector.val() && domainSelector){
-            $selector.val(domainSelector);
+        if(!$selector.val() && selector){
+            $selector.val(selector);
         }
 
     }
 );
-
-
 
 
 $(function ($) {
@@ -54,22 +54,40 @@ $(function ($) {
     let $url = $('#url');
     let $filename = $('#filename');
     let $content = $('#content');
+    let $isUseHref = $('#isUseHref');
 
-    //
+    // 这里的自动点击是所有动作的开始；
     $('#selectText').click(function () {
 
         let selector = $selector.val();
-
+        let isUseHref = $isUseHref.prop('checked');
         //发消息给content scripts
         chrome.tabs.getSelected(null, function (tab) {
-            chrome.tabs.sendRequest(tab.id, {selector: selector}, function (response) {
+            chrome.tabs.sendRequest(tab.id, {selector: selector, isUseHref: isUseHref}, function (response) {
                 console.log(response);
             });
         });
 
     }).click();
 
-    //
+    /////////////////////////////////////////////////////////////////////
+    // 使用正则分割重复
+    $('#split').click( function () {
+        let $content = $('#content');
+        let repeat = $('#repeat').val();
+        let str = $content.val();
+        let arr = str.split(/\n/img);
+        console.log(arr);
+        let str2 = '';
+        arr.forEach( function (val, index) {
+            for(let i= 0; i < repeat; i++){
+                str2 = str2 + val + '\n';
+            }
+        });
+        $content.text(str2);
+    });
+    /////////////////////////////////////////////////////////////////////
+    // 保存文件
     $('#save').click(function () {
 
         let filename = $filename.val() || (+new Date).toString(36);
@@ -105,7 +123,8 @@ $(function ($) {
 
     });
 
-
+    /////////////////////////////////////////////////////////////////////
+    // 使用服务器保存文件，暂时用不着
     $('#submit').click(function(){
         $.ajax({
             url: 'http://localhost:2018/txt',
@@ -121,25 +140,7 @@ $(function ($) {
     });
 
 
-
 });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

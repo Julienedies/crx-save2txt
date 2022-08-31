@@ -1,8 +1,15 @@
 #wraper{
 }
 #btnBar{
-	height:28px;
 	margin:0;
+}
+
+input[type="text"]{
+	padding: 3px 3px;
+}
+
+#urlKey{
+	width:90%;
 }
 #selector{
     width:16em;
@@ -15,5 +22,5 @@
 }
 textarea{
 	width:720px;
-	height:520px;
+	height:480px;
 }

@@ -13,10 +13,20 @@
     <form action="http://localhost:2018/txt" method="post">
 
         <div id="btnBar">
+           <!-- <div><input type="text" id="urlKey" placeholder="url匹配符，默认是域名"></div>-->
+
             <input type="text" id="selector" placeholder="使用css选择符，自定义保存元素"/>
             <button type="button" id="selectText">选择文本</button>
             <button type="button" id="save">下载</button>
-            <button type="button" id="submit">提交到服务器</button>
+            <button type="button" id="split">分割重复</button>
+            <input type="number" step="1" id="repeat" value="4">
+            <!--<button type="button" id="submit">提交到服务器</button>-->
+
+            <label>
+                <input type="checkbox" name="isUseHref" id="isUseHref">
+                为单个页面设定Jquery选择符
+            </label>
+
             <span id="response"></span>
         </div>
 

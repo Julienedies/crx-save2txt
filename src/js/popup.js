@@ -75,16 +75,20 @@ $(function ($) {
     $('#split').click( function () {
         let $content = $('#content');
         let repeat = $('#repeat').val();
-        let str = $content.val();
+        //let str = $content.text();
+        let str = $content[0].value;
         let arr = str.split(/\n/img);
-        console.log(arr);
+        console.log(arr, repeat);
         let str2 = '';
         arr.forEach( function (val, index) {
             for(let i= 0; i < repeat; i++){
                 str2 = str2 + val + '\n';
             }
         });
-        $content.text(str2);
+
+        //console.log(str2, $content[0]);
+        //$content.text(str2);
+        $content[0].value = str2;
     });
     /////////////////////////////////////////////////////////////////////
     // 保存文件
